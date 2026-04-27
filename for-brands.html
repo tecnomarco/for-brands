@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Brands — Commercial Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0e0e0e;
+    --white: #f5f2ee;
+    --warm: #c8b89a;
+    --mid: #6b6457;
+    --accent: #b8956a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: linear-gradient(to bottom, rgba(14,14,14,0.95), transparent);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-link:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 70% 30%, rgba(184,149,106,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(200,184,154,0.05) 0%, transparent 50%);
+  }
+  .hero-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    max-width: 800px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--warm);
+  }
+  .hero-sub {
+    position: absolute;
+    bottom: 6rem;
+    right: 4rem;
+    font-size: 0.85rem;
+    color: var(--mid);
+    max-width: 280px;
+    text-align: right;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.7s forwards;
+  }
+  .line-deco {
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--warm), transparent);
+    transform: translateY(-50%);
+    opacity: 0;
+    animation: fadeIn 1s ease 1s forwards;
+  }
+
+  /* SECTION BASE */
+  section { padding: 7rem 4rem; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* INTRO */
+  .intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    border-top: 1px solid rgba(200,184,154,0.12);
+  }
+  .intro-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--white);
+  }
+  .intro-headline em { font-style: italic; color: var(--warm); }
+  .intro-body {
+    font-size: 0.92rem;
+    color: rgba(245,242,238,0.65);
+    line-height: 1.9;
+    padding-top: 0.5rem;
+  }
+  .intro-body p + p { margin-top: 1.2rem; }
+
+  /* DISCIPLINES */
+  .disciplines { background: rgba(200,184,154,0.03); }
+  .disc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(200,184,154,0.1);
+    border: 1px solid rgba(200,184,154,0.1);
+    margin-top: 1rem;
+  }
+  .disc-item {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+  }
+  .disc-item:hover { background: rgba(200,184,154,0.05); }
+  .disc-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: rgba(200,184,154,0.15);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .disc-name {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .disc-desc {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+
+  /* HOW IT WORKS */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 1rem;
+  }
+  .how-step { border-top: 1px solid rgba(200,184,154,0.2); padding-top: 2rem; }
+  .how-step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .how-step-title {
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .how-step-desc {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+
+  /* LICENSING */
+  .licensing {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    border-top: 1px solid rgba(200,184,154,0.12);
+  }
+  .licensing-left {}
+  .licensing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .licensing-title em { font-style: italic; color: var(--warm); }
+  .licensing-text {
+    font-size: 0.88rem;
+    color: rgba(245,242,238,0.6);
+    line-height: 1.9;
+  }
+  .licensing-text p + p { margin-top: 1rem; }
+  .license-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(200,184,154,0.1);
+    border: 1px solid rgba(200,184,154,0.1);
+  }
+  .license-option {
+    background: var(--black);
+    padding: 1.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    transition: background 0.3s;
+  }
+  .license-option:hover { background: rgba(200,184,154,0.04); }
+  .license-name {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    min-width: 140px;
+  }
+  .license-desc {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.7;
+    text-align: right;
+  }
+
+  /* RETAINER */
+  .retainer-box {
+    border: 1px solid rgba(200,184,154,0.2);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .retainer-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(184,149,106,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .retainer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+  }
+  .retainer-title em { font-style: italic; color: var(--warm); }
+  .retainer-body {
+    font-size: 0.88rem;
+    color: rgba(245,242,238,0.6);
+    line-height: 1.9;
+  }
+  .retainer-body p + p { margin-top: 1rem; }
+  .retainer-perks {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .perk {
+    font-size: 0.8rem;
+    color: var(--warm);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .perk::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 9rem 4rem;
+    border-top: 1px solid rgba(200,184,154,0.12);
+    position: relative;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(184,149,106,0.06), transparent 65%);
+    pointer-events: none;
+  }
+  .cta-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-title em { font-style: italic; color: var(--warm); }
+  .cta-sub {
+    font-size: 0.88rem;
+    color: var(--mid);
+    margin-bottom: 3.5rem;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 1.1rem 3.5rem;
+    border: 1px solid var(--warm);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-btn:hover {
+    background: var(--warm);
+    color: var(--black);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid rgba(200,184,154,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--mid);
+    text-transform: uppercase;
+  }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 0.6; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav, section, footer { padding-left: 2rem; padding-right: 2rem; }
+    .hero { padding: 0 2rem 5rem; }
+    .intro, .licensing, .retainer-box { grid-template-columns: 1fr; gap: 3rem; }
+    .disc-grid { grid-template-columns: 1fr 1fr; }
+    .how-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .hero-sub { position: static; text-align: left; margin-top: 2rem; }
+    .line-deco { display: none; }
+    .retainer-box { padding: 2.5rem; }
+    .license-option { flex-direction: column; gap: 0.5rem; }
+    .license-desc { text-align: left; }
+  }
+  @media (max-width: 580px) {
+    .disc-grid, .how-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Marco Gallico</a>
+  <a href="#contact" class="nav-link">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-label">Commercial Photography · Los Angeles</p>
+    <h1 class="hero-title">
+      Imagery that works<br>
+      as hard as your <em>brand</em>.
+    </h1>
+  </div>
+  <p class="hero-sub">
+    From campaign shoots to monthly content retainers — built for brands that take visual identity seriously.
+  </p>
+  <div class="line-deco"></div>
+</section>
+
+<!-- INTRO -->
+<section>
+  <div class="intro">
+    <div>
+      <p class="section-label">Who this is for</p>
+      <h2 class="intro-headline">
+        Creative partners,<br>not just<br><em>vendors</em>.
+      </h2>
+    </div>
+    <div class="intro-body">
+      <p>
+        I work with brands, agencies, and in-house creative teams that need a photographer who understands more than just lighting — someone who gets deadlines, brand guidelines, art direction, and the difference between a pretty shot and one that actually converts.
+      </p>
+      <p>
+        Whether you need a full campaign, ongoing content for social and marketing, or a reliable photographer on retainer, I offer a professional, seamless experience from brief to final delivery.
+      </p>
+      <p>
+        Based in Los Angeles, available to travel.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DISCIPLINES -->
+<section class="disciplines">
+  <p class="section-label">What I shoot</p>
+  <div class="disc-grid">
+    <div class="disc-item">
+      <div class="disc-number">01</div>
+      <div class="disc-name">Automotive</div>
+      <div class="disc-desc">Dealerships, launches, editorial features, and luxury brand campaigns. Studio and location.</div>
+    </div>
+    <div class="disc-item">
+      <div class="disc-number">02</div>
+      <div class="disc-name">Food & Beverage</div>
+      <div class="disc-desc">Restaurants, brands, menus, and packaged goods. Hero shots that make people hungry.</div>
+    </div>
+    <div class="disc-item">
+      <div class="disc-number">03</div>
+      <div class="disc-name">Interiors & Architecture</div>
+      <div class="disc-desc">Hotels, offices, retail spaces, hospitality. Spaces that sell themselves.</div>
+    </div>
+    <div class="disc-item">
+      <div class="disc-number">04</div>
+      <div class="disc-name">Product</div>
+      <div class="disc-desc">E-commerce, packaging, lifestyle. Clean, consistent, and optimized for every platform.</div>
+    </div>
+    <div class="disc-item">
+      <div class="disc-number">05</div>
+      <div class="disc-name">Corporate & Headshots</div>
+      <div class="disc-desc">Executive portraits, team photography, and brand-consistent headshot days for companies.</div>
+    </div>
+    <div class="disc-item">
+      <div class="disc-number">06</div>
+      <div class="disc-name">Events</div>
+      <div class="disc-desc">Product launches, brand activations, galas, conferences. Fast turnaround, zero drama.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <p class="section-label">How it works</p>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-step-num">01</div>
+      <div class="how-step-title">Brief & Discovery</div>
+      <div class="how-step-desc">We talk through your project, goals, brand references, and timeline. No forms, no friction — just a conversation.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">02</div>
+      <div class="how-step-title">Proposal & Quote</div>
+      <div class="how-step-desc">You receive a clear quote with creative fee, usage rights, and deliverables. No surprise invoices after the fact.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">03</div>
+      <div class="how-step-title">Production</div>
+      <div class="how-step-desc">I handle the shoot with full professionalism — on brief, on time, with attention to every detail that matters to your brand.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">04</div>
+      <div class="how-step-title">Delivery</div>
+      <div class="how-step-desc">Edited, retouched, and delivered via gallery within the agreed timeline. Print-ready and web-optimized versions included.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LICENSING -->
+<section>
+  <div class="licensing">
+    <div class="licensing-left">
+      <p class="section-label">Usage & Licensing</p>
+      <h2 class="licensing-title">
+        You own the<br>
+        rights you <em>need</em>.
+      </h2>
+      <div class="licensing-text">
+        <p>
+          Commercial photography involves two separate fees: the creative fee (the shoot itself) and the usage license (how and where the images are used). This is standard industry practice and protects both parties.
+        </p>
+        <p>
+          Licensing is based on usage scope — social media content costs differently than a national ad campaign. I keep it transparent and flexible. We agree on everything upfront, in writing.
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="license-options">
+        <div class="license-option">
+          <span class="license-name">Digital / Social</span>
+          <span class="license-desc">Owned channels, social media, website, email marketing. Time-limited or perpetual.</span>
+        </div>
+        <div class="license-option">
+          <span class="license-name">Advertising</span>
+          <span class="license-desc">Paid media — digital ads, OOH, print campaigns. Scoped by territory and duration.</span>
+        </div>
+        <div class="license-option">
+          <span class="license-name">Editorial</span>
+          <span class="license-desc">Press, editorial features, PR use. Non-commercial distribution.</span>
+        </div>
+        <div class="license-option">
+          <span class="license-name">Exclusive Buyout</span>
+          <span class="license-desc">Full rights transfer. Available for select projects — discussed case by case.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RETAINER -->
+<section>
+  <p class="section-label">Ongoing partnerships</p>
+  <div class="retainer-box">
+    <div>
+      <h2 class="retainer-title">
+        Your photographer,<br>
+        every <em>month</em>.
+      </h2>
+    </div>
+    <div>
+      <div class="retainer-body">
+        <p>
+          Some of my best client relationships are retainer-based — a set number of shoot days per month, a consistent visual language, and a photographer who already knows your brand inside out.
+        </p>
+        <p>
+          Ideal for restaurants, hospitality groups, agencies, and companies with regular content needs.
+        </p>
+      </div>
+      <div class="retainer-perks">
+        <span class="perk">Priority booking & scheduling</span>
+        <span class="perk">Consistent editing style across all content</span>
+        <span class="perk">Reduced day rate vs. one-off projects</span>
+        <span class="perk">Flexible scope — adjust month to month</span>
+        <span class="perk">Fast-turnaround delivery guaranteed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <p class="cta-eyebrow">Let's work together</p>
+  <h2 class="cta-title">
+    Tell me about<br>your <em>project</em>.
+  </h2>
+  <p class="cta-sub">
+    No commitment, no lengthy forms. Just send a message with a rough idea of what you're working on and I'll get back to you within 24 hours.
+  </p>
+  <a href="mailto:magvisuals@outlook.com" class="cta-btn">Get in touch</a>
+</section>
+
+<footer>
+  <span class="footer-logo">Marco Gallico</span>
+  <span class="footer-copy">Los Angeles, CA &nbsp;·&nbsp; Available for travel</span>
+</footer>
+
+</body>
+</html>
